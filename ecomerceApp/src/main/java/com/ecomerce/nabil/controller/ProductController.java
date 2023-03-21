@@ -5,6 +5,7 @@ import com.ecomerce.nabil.entity.Product;
 import com.ecomerce.nabil.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -19,6 +20,7 @@ import java.util.Set;
 public class ProductController {
     @Autowired
     ProductService productService;
+    @PreAuthorize("hasRole('Admin')")
     @PostMapping(value = {"/addNewProduct"},consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Product addNewProduct(@RequestPart("product") Product product, @RequestPart("imageFile")MultipartFile[] multipartFiles) {
         //return  productService.addNewProduct(product);
