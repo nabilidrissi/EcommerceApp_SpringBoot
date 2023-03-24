@@ -5,6 +5,8 @@ import com.ecomerce.nabil.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     @Autowired
@@ -13,5 +15,9 @@ public class ProductService {
         Product p=productDao.save(product);
         return p;
 
+    }
+
+    public List<Product> getAllProducts(){
+        return  (List<Product>) productDao.findAll();
     }
 }
